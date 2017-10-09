@@ -76,7 +76,12 @@
 根据HTML5规范：
 
 > 应在html标签上加上lang属性。这会给语音工具和翻译工具帮助，告诉它们应当怎么去发音和翻译。
-> 更多关于 lang 属性的说明在这里；
+
+更多关于 lang 属性的说明[在这里](http://w3c.github.io/html/semantics.html#the-html-element "在这里")；
+
+在sitepoint上可以查到[语言列表](https://www.sitepoint.com/iso-2-letter-language-codes/ "语言列表")；
+
+但sitepoint只是给出了语言的大类，例如中文只给出了zh，但是没有区分香港，台湾，大陆。而微软给出了一份更加[详细的语言列表](https://msdn.microsoft.com/en-us/library/ms533052(v=vs.85).aspx "详细的语言列表")，其中细分了zh-cn, zh-hk, zh-tw。
 
 	<!DOCTYPE html>
 	<html lang="en-us">
