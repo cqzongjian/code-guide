@@ -8,7 +8,7 @@
 
 [3 CSS, SCSS](#3)
 
-[4 CSS, SCSS](#4)
+[4 JavaScript](#4)
 
 
 
