@@ -1690,3 +1690,10 @@ if, else,for, while, do, switch, try, catch, finally, with。
 		if (condition) {
 		
 		}
+
+
+## 参考资料
+
+1. [Google HTML/CSS Style Guide](https://google.github.io/styleguide/htmlcssguide.html "Google HTML/CSS Style Guide")
+1. [Google JavaScript Style Guide](http://google.github.io/styleguide/javascriptguide.xml "Google JavaScript Style Guide")
+1. [Code Guide by @AlloyTeam](http://alloyteam.github.io/CodeGuide/ "Code Guide by @AlloyTeam")
