@@ -1346,12 +1346,12 @@ margin 和 padding 相反，需要使用简写；
 
 顶层注释用于告诉不熟悉这段代码的读者这个文件中包含哪些东西. 应该提供文件的大体内容, 它的作者, 依赖关系和兼容性信息. 如下:
 
-	// Copyright 2009 Google Inc. All Rights Reserved.
+	// Copyright 2018 PAX Inc. All Rights Reserved.
 	
 	/**
 	 * @fileoverview Description of file, its uses and information
 	 * about its dependencies.
-	 * @author user@google.com (Firstname Lastname)
+	 * @author cqzongjian@google.com (Firstname Lastname)
 	 */
 
 **类注释**
