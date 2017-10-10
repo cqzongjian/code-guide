@@ -1313,7 +1313,7 @@ margin 和 padding 相反，需要使用简写；
 		 */
 		var x = 1;
 
-### 4.9 注释
+### 4.9 文档注释
 
 各类标签@param, @method等请参考[usejsdoc](http://usejsdoc.org/ "usejsdoc")和[JSDoc Guide](http://yuri4ever.github.io/jsdoc/ "JSDoc Guide")；
 
