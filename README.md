@@ -1313,7 +1313,7 @@ margin 和 padding 相反，需要使用简写；
 		 */
 		var x = 1;
 
-### 4.9 文档注释
+### 4.9 注释
 
 各类标签@param, @method等请参考[usejsdoc](http://usejsdoc.org/ "usejsdoc")和[JSDoc Guide](http://yuri4ever.github.io/jsdoc/ "JSDoc Guide")；
 
@@ -1341,8 +1341,89 @@ margin 和 padding 相反，需要使用简写；
 		    ...
 		}
 
+
+**顶层/文件注释**
+
+顶层注释用于告诉不熟悉这段代码的读者这个文件中包含哪些东西. 应该提供文件的大体内容, 它的作者, 依赖关系和兼容性信息. 如下:
+
+	// Copyright 2009 Google Inc. All Rights Reserved.
+	
+	/**
+	 * @fileoverview Description of file, its uses and information
+	 * about its dependencies.
+	 * @author user@google.com (Firstname Lastname)
+	 */
+
+**类注释**
+
+每个类的定义都要附带一份注释, 描述类的功能和用法. 也需要说明构造器参数. 如果该类继承自其它类, 应该使用 @extends 标记. 如果该类是对接口的实现, 应该使用 @implements 标记。
+
+	/**
+	 * Class making something fun and easy.
+	 * @param {string} arg1 An argument that makes this more interesting.
+	 * @param {Array.<number>} arg2 List of numbers to be processed.
+	 * @constructor
+	 * @extends {goog.Disposable}
+	 */
+	project.MyClass = function(arg1, arg2) {
+	  // ...
+	};
+	goog.inherits(project.MyClass, goog.Disposable);
+
+**方法与函数的注释**
+
+提供参数的说明. 使用完整的句子, 并用第三人称来书写方法说明。
+
+	/**
+	 * Converts text to some completely different text.
+	 * @param {string} arg1 An argument that makes this more interesting.
+	 * @return {string} Some return value.
+	 */
+	project.MyClass.prototype.someMethod = function(arg1) {
+	  // ...
+	};
+	
+	/**
+	 * Operates on an instance of MyClass and returns something.
+	 * @param {project.MyClass} obj Instance of MyClass which leads to a long
+	 *     comment that needs to be wrapped to two lines.
+	 * @return {boolean} Whether something occured.
+	 */
+	function PR_someMethod(obj) {
+	  // ...
+	}
+
+对于一些简单的, 不带参数的 getters, 说明可以忽略。
+
+	/**
+	 * @return {Element} The element for the component.
+	 */
+	goog.ui.Component.prototype.getElement = function() {
+	  return this.element_;
+	};
+
+**属性注释**
+
+也需要对属性进行注释。
+
+	/**
+	 * Maximum number of things per pane.
+	 * @type {number}
+	 */
+	project.MyClass.prototype.someProperty = 4;
+
+**类型转换的注释**
+
+有时, 类型检查不能很准确地推断出表达式的类型, 所以应该给它添加类型标记注释来明确之, 并且必须在表达式和类型标签外面包裹括号。
+
+	/** @type {number} */ (x)
+	(/** @type {number} */ x)
+
+
+
 ### 4.10 引号
 
+单引号 (') 优于双引号 ("). 当你创建一个包含 HTML 代码的字符串时就知道它的好处了。
 最外层统一使用单引号。
 
 		// not good
@@ -1384,6 +1465,23 @@ margin 和 padding 相反，需要使用简写；
 		
 		// good
 		var $body = $('body');
+
+**属性和方法**
+
+- 文件或类中的 私有 属性, 变量和方法名应该以下划线 "_" 开头.
+- 保护 属性, 变量和方法名不需要下划线开头, 和公共变量名一样.
+
+**方法和函数参数**
+
+可选参数以 `opt_` 开头.
+
+函数的参数个数不固定时, 应该添加最后一个参数 `var_args` 为参数的个数. 你也可以不设置 `var_args` 而取代使用 `arguments`.
+
+可选和可变参数应该在 `@param` 标记中说明清楚. 虽然这两个规定对编译器没有任何影响, 但还是请尽量遵守
+
+**Getters 和 Setters**
+
+Getters 和 setters 并不是必要的. 但只要使用它们了, 就请将 getters 命名成 `getFoo()` 形式, 将 setters 命名成 `setFoo(value)` 形式. (对于布尔类型的 getters, 使用 `isFoo()` 也可.)
 
 ### 4.12 变量声明
 
@@ -1486,9 +1584,11 @@ margin 和 padding 相反，需要使用简写；
 
 ### 4.15 括号
 
+不要滥用括号, 只在必要的时候使用它。
+
 下列关键字后必须有大括号（即使代码块的内容只有一行）：
 
-if, else,for, while, do, switch, try, catch, finally, with。
+`if, else,for, while, do, switch, try, catch, finally, with`。
 
 		// not good
 		if (condition)
@@ -1498,6 +1598,8 @@ if, else,for, while, do, switch, try, catch, finally, with。
 		if (condition) {
 		    doSomething();
 		}
+
+对于一元操作符(如delete, typeof 和 void ), 或是在某些关键词(如 return, throw, case, new )之后, 不要使用括号。
 
 ### 4.16 null
 
@@ -1653,7 +1755,97 @@ if, else,for, while, do, switch, try, catch, finally, with。
 		    };
 		};
 
-### 4.19 杂项
+
+### 4.19 块内函数声明
+
+不要在块内声明一个函数。
+
+不要写成:
+
+	if (x) {
+	  function foo() {}
+	}
+
+虽然很多 JS 引擎都支持块内声明函数, 但它不属于 ECMAScript 规范 (见 [ECMA-262](http://www.ecma-international.org/publications/standards/Ecma-262.htm "ECMA-262"), 第13和14条). 各个浏览器糟糕的实现相互不兼容, 有些也与未来 ECMAScript 草案相违背. ECMAScript 只允许在脚本的根语句或函数中声明函数. 如果确实需要在块中定义函数, 建议使用函数表达式来初始化变量:
+
+	if (x) {
+	  var foo = function() {}
+	}
+
+
+### 4.20 关联数组
+
+永远不要使用 Array 作为 map/hash/associative 数组。
+
+数组中不允许使用非整型作为索引值, 所以也就不允许用关联数组. 而取代它使用 Object 来表示 map/hash 对象. Array 仅仅是扩展自 Object (类似于其他 JS 中的对象, 就像 Date, RegExp 和 String)一样来使用。
+
+### 4.21 多行字符串
+
+不要使用。
+
+不要这样写长字符串:
+
+	var myString = 'A rather long string of English text, an error message \
+	                actually that just keeps going and going -- an error \
+	                message to make the Energizer bunny blush (right through \
+	                those Schwarzenegger shades)! Where was I? Oh yes, \
+	                you\'ve got an error and all the extraneous whitespace is \
+	                just gravy.  Have a nice day.';
+
+在编译时, 不能忽略行起始位置的空白字符; "\" 后的空白字符会产生奇怪的错误; 虽然大多数脚本引擎支持这种写法, 但它不是 ECMAScript 的标准规范。
+
+### 4.22 Array 和 Object 直接量
+
+使用 Array 和 Object 语法, 而不使用 Array 和 Object 构造器.
+
+使用 Array 构造器很容易因为传参不恰当导致错误.
+
+	// Length is 3.
+	var a1 = new Array(x1, x2, x3);
+	
+	// Length is 2.
+	var a2 = new Array(x1, x2);
+	
+	// If x1 is a number and it is a natural number the length will be x1.
+	// If x1 is a number but not a natural number this will throw an exception.
+	// Otherwise the array will have one element with x1 as its value.
+	var a3 = new Array(x1);
+	
+	// Length is 0.
+	var a4 = new Array();
+
+如果传入一个参数而不是2个参数, 数组的长度很有可能就不是你期望的数值了.
+
+为了避免这些歧义, 我们应该使用更易读的直接量来声明.
+
+	var a = [x1, x2, x3];
+	var a2 = [x1, x2];
+	var a3 = [x1];
+	var a4 = [];
+
+虽然 Object 构造器没有上述类似的问题, 但鉴于可读性和一致性考虑, 最好还是在字面上更清晰地指明.
+
+	var o = new Object();
+	
+	var o2 = new Object();
+	o2.a = 0;
+	o2.b = 1;
+	o2.c = 2;
+	o2['strange key'] = 3;
+
+应该写成:
+
+	var o = {};
+	
+	var o2 = {
+	  a: 0,
+	  b: 1,
+	  c: 2,
+	  'strange key': 3
+	};
+
+
+### 4.23 杂项
 
 不要混用tab和space；
 
@@ -1705,6 +1897,203 @@ if, else,for, while, do, switch, try, catch, finally, with。
 		if (condition) {
 		
 		}
+
+### 4.24 Tips and Tricks
+
+JavaScript 小技巧：
+
+**True 和 False 布尔表达式**
+
+下面的布尔表达式都返回 false:
+
+	null
+	undefined
+	'' 空字符串
+	0 数字0
+
+但小心下面的, 可都返回 true:
+
+	'0' 字符串0
+	[] 空数组
+	{} 空对象
+
+下面段比较糟糕的代码:
+
+	while (x != null) {
+
+你可以直接写成下面的形式(只要你希望 x 不是 0 和空字符串, 和 false):
+
+	while (x) {
+
+如果你想检查字符串是否为 null 或空:
+
+	if (y != null && y != '') {
+
+但这样会更好:
+
+	if (y) {
+
+注意: 还有很多需要注意的地方, 如:
+
+	
+
+	Boolean('0') == true
+	'0' != true
+
+	0 != null
+	0 == []
+	0 == false
+
+	Boolean(null) == false
+	null != true
+	null != false
+
+	Boolean(undefined) == false
+	undefined != true
+	undefined != false
+
+	Boolean([]) == true
+	[] != true
+	[] == false
+
+	Boolean({}) == true
+	{} != true
+	{} != false
+
+**条件(三元)操作符 (?:)**
+
+三元操作符用于替代下面的代码:
+
+	if (val != 0) {
+	  return foo();
+	} else {
+	  return bar();
+	}
+
+你可以写成:
+
+	return val ? foo() : bar();
+
+在生成 HTML 代码时也是很有用的:
+
+	var html = '<input type="checkbox"' +
+	    (isChecked ? ' checked' : '') +
+	    (isEnabled ? '' : ' disabled') +
+	    ' name="foo">';
+
+**&& 和 ||**
+
+二元布尔操作符是可短路的, 只有在必要时才会计算到最后一项.
+
+"||" 被称作为 'default' 操作符, 因为可以这样:
+
+	/** @param {*=} opt_win */
+	function foo(opt_win) {
+	  var win;
+	  if (opt_win) {
+	    win = opt_win;
+	  } else {
+	    win = window;
+	  }
+	  // ...
+	}
+
+你可以使用它来简化上面的代码:
+
+	/** @param {*=} opt_win */
+	function foo(opt_win) {
+	  var win = opt_win || window;
+	  // ...
+	}
+
+"&&" 也可简短代码.比如:
+
+	if (node) {
+	  if (node.kids) {
+	    if (node.kids[index]) {
+	      foo(node.kids[index]);
+	    }
+	  }
+	}
+
+你可以像这样来使用:
+
+	if (node && node.kids && node.kids[index]) {
+	  foo(node.kids[index]);
+	}
+
+或者:
+
+	var kid = node && node.kids && node.kids[index];
+	if (kid) {
+	  foo(kid);
+	}
+
+不过这样就有点儿过头了:
+
+	node && node.kids && node.kids[index] && foo(node.kids[index]);
+
+**使用 join() 来创建字符串**
+
+通常是这样使用的:
+
+	function listHtml(items) {
+	  var html = '<div class="foo">';
+	  for (var i = 0; i < items.length; ++i) {
+	    if (i > 0) {
+	      html += ', ';
+	    }
+	    html += itemHtml(items[i]);
+	  }
+	  html += '</div>';
+	  return html;
+	}
+
+但这样在 IE 下非常慢, 可以用下面的方式:
+
+	function listHtml(items) {
+	  var html = [];
+	  for (var i = 0; i < items.length; ++i) {
+	    html[i] = itemHtml(items[i]);
+	  }
+	  return '<div class="foo">' + html.join(', ') + '</div>';
+	}
+
+你也可以是用数组作为字符串构造器, 然后通过 `myArray.join('')` 转换成字符串. 不过由于赋值操作快于数组的 `push()`, 所以尽量使用赋值操作.
+
+**遍历 Node List**
+
+Node lists 是通过给节点迭代器加一个过滤器来实现的. 这表示获取他的属性, 如 length 的时间复杂度为 O(n), 通过 length 来遍历整个列表需要 O(n^2).
+
+	var paragraphs = document.getElementsByTagName('p');
+	for (var i = 0; i < paragraphs.length; i++) {
+	  doSomething(paragraphs[i]);
+	}
+
+这样做会更好:
+
+	var paragraphs = document.getElementsByTagName('p');
+	for (var i = 0, paragraph; paragraph = paragraphs[i]; i++) {
+	  doSomething(paragraph);
+	}
+
+这种方法对所有的 `collections` 和数组(只要数组不包含 `falsy` 值) 都适用.
+
+在上面的例子中, 也可以通过 `firstChild` 和 `nextSibling` 来遍历孩子节点.
+
+	var parentNode = document.getElementById('foo');
+	for (var child = parentNode.firstChild; child; child = child.nextSibling) {
+	  doSomething(child);
+	}
+
+
+### 4.25 Parting Words
+
+保持一致性。
+
+当你在编辑代码之前, 先花一些时间查看一下现有代码的风格. 如果他们给算术运算符添加了空格, 你也应该添加. 如果他们的注释使用一个个星号盒子, 那么也请你使用这种方式。
+
+代码风格中一个关键点是整理一份常用词汇表, 开发者认同它并且遵循, 这样在代码中就能统一表述。我们在这提出了一些全局上的风格规则, 但也要考虑自身情况形成自己的代码风格. 但如果你添加的代码和现有的代码有很大的区别, 这就让阅读者感到很不和谐. 所以, 避免这种情况的发生。
 
 
 
