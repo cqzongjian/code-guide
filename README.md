@@ -23,7 +23,7 @@
 
 全部采用小写方式， 以下划线分隔。
 
-例：my_project_name
+例：`my_project_name`
 
 ### 1.2 目录命名
 
@@ -31,25 +31,25 @@
 
 有复数结构时，要采用复数命名法。
 
-例：scripts, styles, images, data_models
+例：`scripts, styles, images, data_models`
 
 ### 1.3 JS文件命名
 
 参照项目命名规则。
 
-例：account_model.js
+例：`account_model.js`
 
 ### 1.4 CSS, SCSS文件命名
 
 参照项目命名规则。
 
-例：retina_sprites.scss
+例：`retina_sprites.scss`
 
 ### 1.5 HTML文件命名
 
 参照项目命名规则。
 
-例：error_report.html
+例：`error_report.html`
 
 
 ----------
