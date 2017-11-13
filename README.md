@@ -51,7 +51,6 @@
 
 例：`error_report.html`
 
-
 ----------
 
 <h2 id='2'> 2 HTML </h2>
