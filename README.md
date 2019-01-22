@@ -33,23 +33,22 @@
 
 例：`scripts, styles, images, data_models`
 
-### 1.3 JS文件命名
+### 1.3 文件资源命名
 
-参照项目命名规则。
+- 文件名不得含有空格；
+- 文件名建议只使用小写字母，不使用大写字母；( 为了醒目，某些说明文件的文件名，可以使用大写字母，比如README、LICENSE。 )
+- 文件名包含多个单词时，单词之间建议使用半角的连词线 ( - ) 分隔。
+- 引入资源使用相对路径，不要指定资源所带的具体协议 ( http:,https: ) ，除非这两者协议都不可用。
 
-例：`account_model.js`
+例：`error-report.html`
 
-### 1.4 CSS, SCSS文件命名
+不推荐：
 
-参照项目命名规则。
+`<script src="http://cdn.com/foundation.min.js"></script>`
 
-例：`retina_sprites.scss`
+推荐：
+`<script src="//cdn.com/foundation.min.js"></script>`
 
-### 1.5 HTML文件命名
-
-参照项目命名规则。
-
-例：`error_report.html`
 
 ----------
 
@@ -57,7 +56,7 @@
 
 ### 2.1 语法
 
-- 缩进使用soft tab（4个空格）；
+- 缩进使用soft tab（2个空格）；
 - 嵌套的节点应该缩进；
 - 在属性上，使用双引号，不要使用单引号；
 - 属性名全小写，用中划线做分隔符；
@@ -66,14 +65,14 @@
 
 		<!DOCTYPE html>
 		<html>
-		    <head>
-		        <title>Page title</title>
-		    </head>
-		    <body>
-		        <img src="images/company_logo.png" alt="Company">
-		
-		        <h1 class="hello-world">Hello, world!</h1>
-		    </body>
+		  <head>
+		    <title>Page title</title>
+		  </head>
+		  <body>
+		    <img src="images/company_logo.png" alt="Company">
+
+		      <h1 class="hello-world">Hello, world!</h1>
+		  </body>
 		</html>
 
 ### 2.2 HTML5 doctype
@@ -101,7 +100,7 @@
 
 	<!DOCTYPE html>
 	<html lang="en-us">
-	    ...
+	  ...
 	</html>
 
 ### 2.4 字符编码
@@ -110,10 +109,10 @@
 
 	<!DOCTYPE html>
 	<html>
-	    <head>
-	        <meta charset="UTF-8">
-	    </head>
-	    ...
+	  <head>
+	      <meta charset="UTF-8">
+	  </head>
+	  ...
 	</html>
 
 ### 2.5 IE兼容模式
@@ -126,10 +125,10 @@
 
 	<!DOCTYPE html>
 	<html>
-	    <head>
-	        <meta http-equiv="X-UA-Compatible" content="IE=Edge">
-	    </head>
-	    ...
+	  <head>
+	      <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+	  </head>
+	  ...
 	</html>
 
 ### 2.6 引入CSS, JS
@@ -188,7 +187,7 @@ boolean属性指不需要声明取值的属性，XHTML需要每个属性声明�
 	<input type="checkbox" value="1" checked>
 	
 	<select>
-	    <option value="1" selected>1</option>
+	  <option value="1" selected>1</option>
 	</select>
 
 ### 2.9 JS生成标签
@@ -203,7 +202,7 @@ boolean属性指不需要声明取值的属性，XHTML需要每个属性声明�
 
 	<!-- Not well -->
 	<span class="avatar">
-	    <img src="...">
+	  <img src="...">
 	</span>
 	
 	<!-- Better -->
@@ -222,16 +221,16 @@ boolean属性指不需要声明取值的属性，XHTML需要每个属性声明�
 
 ### 3.1 缩进
 
-使用soft tab（4个空格）。
+使用soft tab（2个空格）。
 
 	.element {
-	    position: absolute;
-	    top: 10px;
-	    left: 10px;
-	
-	    border-radius: 10px;
-	    width: 50px;
-	    height: 50px;
+	  position: absolute;
+	  top: 10px;
+	  left: 10px;
+
+	  border-radius: 10px;
+	  width: 50px;
+	  height: 50px;
 	}
 
 ### 3.2 分号
@@ -239,9 +238,9 @@ boolean属性指不需要声明取值的属性，XHTML需要每个属性声明�
 每个属性声明末尾都要加分号。
 
 	.element {
-	    width: 20px;
-	    height: 20px;
-	    background-color: red;
+	  width: 20px;
+	  height: 20px;
+	  background-color: red;
 	}
 
 ### 3.3 空格
@@ -266,14 +265,14 @@ boolean属性指不需要声明取值的属性，XHTML需要每个属性声明�
 
 		/* not good */
 		.element {
-		    color :red! important;
-		    background-color: rgba(0,0,0,.5);
+		  color :red! important;
+		  background-color: rgba(0,0,0,.5);
 		}
 		
 		/* good */
 		.element {
-		    color: red !important;
-		    background-color: rgba(0, 0, 0, .5);
+		  color: red !important;
+		  background-color: rgba(0, 0, 0, .5);
 		}
 		
 		/* not good */
@@ -290,36 +289,36 @@ boolean属性指不需要声明取值的属性，XHTML需要每个属性声明�
 		
 		/* not good */
 		.element>.dialog{
-		    ...
+		  ...
 		}
 		
 		/* good */
 		.element > .dialog{
-		    ...
+		  ...
 		}
 		
 		/* not good */
 		.element{
-		    ...
+		  ...
 		}
 		
 		/* good */
 		.element {
-		    ...
+		  ...
 		}
 		
 		/* not good */
 		@if{
-		    ...
+		  ...
 		}@else{
-		    ...
+		  ...
 		}
 		
 		/* good */
 		@if {
-		    ...
+		  ...
 		} @else {
-		    ...
+		  ...
 		}
 
 
@@ -333,26 +332,26 @@ boolean属性指不需要声明取值的属性，XHTML需要每个属性声明�
 
 		/* not good */
 		.element {
-		    ...
+		  ...
 		}
 		.dialog {
-		    color: red;
-		    &:after {
-		        ...
-		    }
+		  color: red;
+		  &:after {
+		    ...
+		  }
 		}
 		
 		/* good */
 		.element {
-		    ...
+		  ...
 		}
 		
 		.dialog {
-		    color: red;
+		  color: red;
 		
-		    &:after {
-		        ...
-		    }
+		  &:after {
+		      ...
+		  }
 		}
 
 ### 3.5 换行
@@ -373,19 +372,19 @@ boolean属性指不需要声明取值的属性，XHTML需要每个属性声明�
 		
 		/* good */
 		.element {
-		    color: red;
-		    background-color: black;
+		  color: red;
+		  background-color: black;
 		}
 		
 		/* not good */
 		.element, .dialog {
-		    ...
+		  ...
 		}
 		
 		/* good */
 		.element,
 		.dialog {
-		    ...
+		  ...
 		}
 
 ### 3.6 注释
@@ -472,73 +471,73 @@ url的内容要用引号；
 相关的属性声明按右边的顺序做分组处理，组之间需要有一个空行。
 
 		.declaration-order {
-		    display: block;
-		    float: right;
+		  display: block;
+		  float: right;
 		
-		    position: absolute;
-		    top: 0;
-		    right: 0;
-		    bottom: 0;
-		    left: 0;
-		    z-index: 100;
+		  position: absolute;
+		  top: 0;
+		  right: 0;
+		  bottom: 0;
+		  left: 0;
+	          z-index: 100;
 		
-		    border: 1px solid #e5e5e5;
-		    border-radius: 3px;
-		    width: 100px;
-		    height: 100px;
+		  border: 1px solid #e5e5e5;
+		  border-radius: 3px;
+		  width: 100px;
+		  height: 100px;
 		
-		    font: normal 13px "Helvetica Neue", sans-serif;
-		    line-height: 1.5;
-		    text-align: center;
+		  font: normal 13px "Helvetica Neue", sans-serif;
+		  line-height: 1.5;
+		  text-align: center;
 		
-		    color: #333;
-		    background-color: #f5f5f5;
+		  color: #333;
+		  background-color: #f5f5f5;
 		
-		    opacity: 1;
+		  opacity: 1;
 		}
 		// 下面是推荐的属性的顺序
 		[
-		    [
-		        "display",
-		        "visibility",
-		        "float",
-		        "clear",
-		        "overflow",
-		        "overflow-x",
-		        "overflow-y",
-		        "clip",
-		        "zoom"
-		    ],
-		    [
-		        "table-layout",
-		        "empty-cells",
-		        "caption-side",
-		        "border-spacing",
-		        "border-collapse",
-		        "list-style",
-		        "list-style-position",
-		        "list-style-type",
-		        "list-style-image"
-		    ],
-		    [
-		        "-webkit-box-orient",
-		        "-webkit-box-direction",
-		        "-webkit-box-decoration-break",
-		        "-webkit-box-pack",
-		        "-webkit-box-align",
-		        "-webkit-box-flex"
-		    ],
-		    [
-		        "position",
-		        "top",
-		        "right",
-		        "bottom",
-		        "left",
-		        "z-index"
-		    ],
-		    [
-		        "margin",
-		        "margin-top",
+		  [
+		      "display",
+		      "visibility",
+		      "float",
+		      "clear",
+		      "overflow",
+		      "overflow-x",
+		      "overflow-y",
+		      "clip",
+		      "zoom"
+		  ],
+		  [
+		      "table-layout",
+		      "empty-cells",
+		      "caption-side",
+		      "border-spacing",
+		      "border-collapse",
+		      "list-style",
+		      "list-style-position",
+		      "list-style-type",
+		      "list-style-image"
+		  ],
+		  [
+		      "-webkit-box-orient",
+		      "-webkit-box-direction",
+		      "-webkit-box-decoration-break",
+		      "-webkit-box-pack",
+		      "-webkit-box-align",
+		      "-webkit-box-flex"
+		  ],
+		  [
+		      "position",
+		      "top",
+		      "right",
+		      "bottom",
+		      "left",
+		      "z-index"
+		  ],
+		  [
+		      "margin",
+		      "margin-top",
 		        "margin-right",
 		        "margin-bottom",
 		        "margin-left",
@@ -811,14 +810,14 @@ url的内容要用引号；
 
 		/* not good */
 		.element {
-		    color: #ABCDEF;
-		    background-color: #001122;
+		  color: #ABCDEF;
+		  background-color: #001122;
 		}
 		
 		/* good */
 		.element {
-		    color: #abcdef;
-		    background-color: #012;
+		  color: #abcdef;
+		  background-color: #012;
 		}
 
 ### 3.11 属性简写
@@ -835,15 +834,15 @@ margin 和 padding 相反，需要使用简写；
 
 		/* not good */
 		.element {
-		    transition: opacity 1s linear 2s;
+		  transition: opacity 1s linear 2s;
 		}
 		
 		/* good */
 		.element {
-		    transition-delay: 2s;
-		    transition-timing-function: linear;
-		    transition-duration: 1s;
-		    transition-property: opacity;
+		  transition-delay: 2s;
+		  transition-timing-function: linear;
+		  transition-duration: 1s;
+		  transition-property: opacity;
 		}
 
 ### 3.12 媒体查询
