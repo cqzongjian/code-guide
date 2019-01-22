@@ -17,19 +17,22 @@
 
 <h2 id='1'> 1 命名规则 </h2>
 
-项目、目录、文件名称应该使用小写字符, 以避免在有些系统平台上不识别大小写的命名方式。项目、目录、文件名不要包含除 - 和 _ 外的标点符号。
+驼峰式命名法介绍
+
+- Pascal Case 大驼峰式命名法：首字母大写。eg：UserInfo、ProductInfo
+- Camel Case 小驼峰式命名法：首字母小写。eg：userInfo、productInfo
 
 ### 1.1 项目命名
 
-全部采用小写方式， 以下划线分隔。
+- 全部采用小写方式， 以下划线分隔。
 
 例：`my_project_name`
 
 ### 1.2 目录命名
 
-参照项目命名规则；
+- 参照项目命名规则；
 
-有复数结构时，要采用复数命名法。
+- 有复数结构时，要采用复数命名法。
 
 例：`scripts, styles, images, data_models`
 
@@ -48,6 +51,48 @@
 
 推荐：
 `<script src="//cdn.com/foundation.min.js"></script>`
+
+### 1.4 变量命名
+
+- 命名方式 : 小驼峰式命名方法
+- 命名规范 : 类型+对象描述的方式，如果没有明确的类型，就可以使前缀为名词
+
+### 1.5 函数
+
+- 命名方式 : 小驼峰方式 ( 构造函数使用大驼峰命名法 )
+- 命名规则 : 前缀为动词
+
+### 1.6 常量
+
+- 命名方法 : 全部大写
+- 命名规范 : 使用大写字母和下划线来组合命名，下划线用以分割单词。
+
+ 例：
+
+	var MAX_COUNT = 10;
+	var URL = 'http://www.baidu.com';
+
+### 1.7 类的成员
+
+- 公共属性和方法 : 同变量命名方式
+- 私有属性和方法 : 前缀为下划线(_)后面跟公共属性和方法一样的命名方式
+
+ 例：
+
+	function Student(name) {
+	    var _name = name; // 私有成员
+	
+	    // 公共方法
+	    this.getName = function () {
+	        return _name;
+	    }
+	
+	    // 公共方法
+	    this.setName = function (value) {
+	        _name = value;
+	    }
+	}
+
 
 
 ----------
@@ -495,312 +540,14 @@ url的内容要用引号；
 		
 		  opacity: 1;
 		}
-		// 下面是推荐的属性的顺序
-		[
-		  [
-		      "display",
-		      "visibility",
-		      "float",
-		      "clear",
-		      "overflow",
-		      "overflow-x",
-		      "overflow-y",
-		      "clip",
-		      "zoom"
-		  ],
-		  [
-		      "table-layout",
-		      "empty-cells",
-		      "caption-side",
-		      "border-spacing",
-		      "border-collapse",
-		      "list-style",
-		      "list-style-position",
-		      "list-style-type",
-		      "list-style-image"
-		  ],
-		  [
-		      "-webkit-box-orient",
-		      "-webkit-box-direction",
-		      "-webkit-box-decoration-break",
-		      "-webkit-box-pack",
-		      "-webkit-box-align",
-		      "-webkit-box-flex"
-		  ],
-		  [
-		      "position",
-		      "top",
-		      "right",
-		      "bottom",
-		      "left",
-		      "z-index"
-		  ],
-		  [
-		      "margin",
-		      "margin-top",
-		        "margin-right",
-		        "margin-bottom",
-		        "margin-left",
-		        "-webkit-box-sizing",
-		        "-moz-box-sizing",
-		        "box-sizing",
-		        "border",
-		        "border-width",
-		        "border-style",
-		        "border-color",
-		        "border-top",
-		        "border-top-width",
-		        "border-top-style",
-		        "border-top-color",
-		        "border-right",
-		        "border-right-width",
-		        "border-right-style",
-		        "border-right-color",
-		        "border-bottom",
-		        "border-bottom-width",
-		        "border-bottom-style",
-		        "border-bottom-color",
-		        "border-left",
-		        "border-left-width",
-		        "border-left-style",
-		        "border-left-color",
-		        "-webkit-border-radius",
-		        "-moz-border-radius",
-		        "border-radius",
-		        "-webkit-border-top-left-radius",
-		        "-moz-border-radius-topleft",
-		        "border-top-left-radius",
-		        "-webkit-border-top-right-radius",
-		        "-moz-border-radius-topright",
-		        "border-top-right-radius",
-		        "-webkit-border-bottom-right-radius",
-		        "-moz-border-radius-bottomright",
-		        "border-bottom-right-radius",
-		        "-webkit-border-bottom-left-radius",
-		        "-moz-border-radius-bottomleft",
-		        "border-bottom-left-radius",
-		        "-webkit-border-image",
-		        "-moz-border-image",
-		        "-o-border-image",
-		        "border-image",
-		        "-webkit-border-image-source",
-		        "-moz-border-image-source",
-		        "-o-border-image-source",
-		        "border-image-source",
-		        "-webkit-border-image-slice",
-		        "-moz-border-image-slice",
-		        "-o-border-image-slice",
-		        "border-image-slice",
-		        "-webkit-border-image-width",
-		        "-moz-border-image-width",
-		        "-o-border-image-width",
-		        "border-image-width",
-		        "-webkit-border-image-outset",
-		        "-moz-border-image-outset",
-		        "-o-border-image-outset",
-		        "border-image-outset",
-		        "-webkit-border-image-repeat",
-		        "-moz-border-image-repeat",
-		        "-o-border-image-repeat",
-		        "border-image-repeat",
-		        "padding",
-		        "padding-top",
-		        "padding-right",
-		        "padding-bottom",
-		        "padding-left",
-		        "width",
-		        "min-width",
-		        "max-width",
-		        "height",
-		        "min-height",
-		        "max-height"
-		    ],
-		    [
-		        "font",
-		        "font-family",
-		        "font-size",
-		        "font-weight",
-		        "font-style",
-		        "font-variant",
-		        "font-size-adjust",
-		        "font-stretch",
-		        "font-effect",
-		        "font-emphasize",
-		        "font-emphasize-position",
-		        "font-emphasize-style",
-		        "font-smooth",
-		        "line-height",
-		        "text-align",
-		        "-webkit-text-align-last",
-		        "-moz-text-align-last",
-		        "-ms-text-align-last",
-		        "text-align-last",
-		        "vertical-align",
-		        "white-space",
-		        "text-decoration",
-		        "text-emphasis",
-		        "text-emphasis-color",
-		        "text-emphasis-style",
-		        "text-emphasis-position",
-		        "text-indent",
-		        "-ms-text-justify",
-		        "text-justify",
-		        "letter-spacing",
-		        "word-spacing",
-		        "-ms-writing-mode",
-		        "text-outline",
-		        "text-transform",
-		        "text-wrap",
-		        "-ms-text-overflow",
-		        "text-overflow",
-		        "text-overflow-ellipsis",
-		        "text-overflow-mode",
-		        "-ms-word-wrap",
-		        "word-wrap",
-		        "-ms-word-break",
-		        "word-break"
-		    ],
-		    [
-		        "color",
-		        "background",
-		        "filter:progid:DXImageTransform.Microsoft.AlphaImageLoader",
-		        "background-color",
-		        "background-image",
-		        "background-repeat",
-		        "background-attachment",
-		        "background-position",
-		        "-ms-background-position-x",
-		        "background-position-x",
-		        "-ms-background-position-y",
-		        "background-position-y",
-		        "-webkit-background-clip",
-		        "-moz-background-clip",
-		        "background-clip",
-		        "background-origin",
-		        "-webkit-background-size",
-		        "-moz-background-size",
-		        "-o-background-size",
-		        "background-size"
-		    ],
-		    [
-		        "outline",
-		        "outline-width",
-		        "outline-style",
-		        "outline-color",
-		        "outline-offset",
-		        "opacity",
-		        "filter:progid:DXImageTransform.Microsoft.Alpha(Opacity",
-		        "-ms-filter:\\'progid:DXImageTransform.Microsoft.Alpha",
-		        "-ms-interpolation-mode",
-		        "-webkit-box-shadow",
-		        "-moz-box-shadow",
-		        "box-shadow",
-		        "filter:progid:DXImageTransform.Microsoft.gradient",
-		        "-ms-filter:\\'progid:DXImageTransform.Microsoft.gradient",
-		        "text-shadow"
-		    ],
-		    [
-		        "-webkit-transition",
-		        "-moz-transition",
-		        "-ms-transition",
-		        "-o-transition",
-		        "transition",
-		        "-webkit-transition-delay",
-		        "-moz-transition-delay",
-		        "-ms-transition-delay",
-		        "-o-transition-delay",
-		        "transition-delay",
-		        "-webkit-transition-timing-function",
-		        "-moz-transition-timing-function",
-		        "-ms-transition-timing-function",
-		        "-o-transition-timing-function",
-		        "transition-timing-function",
-		        "-webkit-transition-duration",
-		        "-moz-transition-duration",
-		        "-ms-transition-duration",
-		        "-o-transition-duration",
-		        "transition-duration",
-		        "-webkit-transition-property",
-		        "-moz-transition-property",
-		        "-ms-transition-property",
-		        "-o-transition-property",
-		        "transition-property",
-		        "-webkit-transform",
-		        "-moz-transform",
-		        "-ms-transform",
-		        "-o-transform",
-		        "transform",
-		        "-webkit-transform-origin",
-		        "-moz-transform-origin",
-		        "-ms-transform-origin",
-		        "-o-transform-origin",
-		        "transform-origin",
-		        "-webkit-animation",
-		        "-moz-animation",
-		        "-ms-animation",
-		        "-o-animation",
-		        "animation",
-		        "-webkit-animation-name",
-		        "-moz-animation-name",
-		        "-ms-animation-name",
-		        "-o-animation-name",
-		        "animation-name",
-		        "-webkit-animation-duration",
-		        "-moz-animation-duration",
-		        "-ms-animation-duration",
-		        "-o-animation-duration",
-		        "animation-duration",
-		        "-webkit-animation-play-state",
-		        "-moz-animation-play-state",
-		        "-ms-animation-play-state",
-		        "-o-animation-play-state",
-		        "animation-play-state",
-		        "-webkit-animation-timing-function",
-		        "-moz-animation-timing-function",
-		        "-ms-animation-timing-function",
-		        "-o-animation-timing-function",
-		        "animation-timing-function",
-		        "-webkit-animation-delay",
-		        "-moz-animation-delay",
-		        "-ms-animation-delay",
-		        "-o-animation-delay",
-		        "animation-delay",
-		        "-webkit-animation-iteration-count",
-		        "-moz-animation-iteration-count",
-		        "-ms-animation-iteration-count",
-		        "-o-animation-iteration-count",
-		        "animation-iteration-count",
-		        "-webkit-animation-direction",
-		        "-moz-animation-direction",
-		        "-ms-animation-direction",
-		        "-o-animation-direction",
-		        "animation-direction"
-		    ],
-		    [
-		        "content",
-		        "quotes",
-		        "counter-reset",
-		        "counter-increment",
-		        "resize",
-		        "cursor",
-		        "-webkit-user-select",
-		        "-moz-user-select",
-		        "-ms-user-select",
-		        "user-select",
-		        "nav-index",
-		        "nav-up",
-		        "nav-right",
-		        "nav-down",
-		        "nav-left",
-		        "-moz-tab-size",
-		        "-o-tab-size",
-		        "tab-size",
-		        "-webkit-hyphens",
-		        "-moz-hyphens",
-		        "hyphens",
-		        "pointer-events"
-		    ]
-		]
+
+下面是推荐的属性的顺序
+
+		1. 影响文档流的属性（比如：display / position / float / clear / visibility 等）
+		2. 自身盒模型的属性（比如：width / height / margin / padding / border 等）
+		3. 排版相关属性（比如：font / line-height / text-align / vertical-align 等）
+		4. 装饰性属性（比如：color / background / opacity / cursor 等） 
+		5. CSS3 新特性（比如：transform / transition / animation 等）
 
 ### 3.10 颜色
 
@@ -1029,15 +776,15 @@ margin 和 padding 相反，需要使用简写；
 
 ### 4.1 缩进
 
-使用soft tab（4个空格）。
+使用soft tab（2个空格）。
 
 		var x = 1,
-		    y = 1;
+		  y = 1;
 		
 		if (x < y) {
-		    x += 10;
+		  x += 10;
 		} else {
-		    x += 1;
+		  x += 1;
 		}
 
 ### 4.2 单行长度
@@ -1780,8 +1527,6 @@ Getters 和 setters 并不是必要的. 但只要使用它们了, 就请将 gett
 数组中不允许使用非整型作为索引值, 所以也就不允许用关联数组. 而取代它使用 Object 来表示 map/hash 对象. Array 仅仅是扩展自 Object (类似于其他 JS 中的对象, 就像 Date, RegExp 和 String)一样来使用。
 
 ### 4.21 多行字符串
-
-不要使用。
 
 不要这样写长字符串:
 
